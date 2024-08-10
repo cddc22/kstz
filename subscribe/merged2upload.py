@@ -3,18 +3,7 @@ import base64
 import os
 import argparse
 
-def fetch_and_decode_base64(url):
-    print(url)
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        decoded_content = base64.b64decode(response.text)
-        return decoded_content.decode('utf-8')
-    except requests.RequestException as e:
-        print(f"Error fetching {url}: {e}")
-        return None
-
-def upload_to_gist(content, gist_id, github_token):
+def upload_to_gist(content, gist_id, github_token, filename):
     url = f"https://api.github.com/gists/{gist_id}"
     headers = {
         'Authorization': f'token {github_token}',
@@ -22,7 +11,7 @@ def upload_to_gist(content, gist_id, github_token):
     }
     data = {
         "files": {
-            "configsub.yaml": {
+            filename: {
                 "content": content
             }
         }
@@ -41,30 +30,16 @@ def main():
 
     current_dir = os.path.dirname(__file__)
     parent_dir = os.path.dirname(current_dir)
-    file_path = os.path.join(parent_dir, 'data', 'subscribes.txt')
-    
+    file_path = os.path.join(parent_dir, 'data', 'clash.yaml')
+
     with open(file_path, 'r') as file:
-        urls = file.read().strip().split('\n')
+        content = file.read()
 
-    all_decoded_texts = []
-
-    for url in urls:
-        decoded_content = fetch_and_decode_base64(url)
-        if decoded_content:
-            all_decoded_texts.append(decoded_content)
-
-    merged_content = "\n".join(all_decoded_texts)
-    encoded_merged_content = base64.b64encode(merged_content.encode('utf-8')).decode('utf-8')
-
-    merged_file_path = os.path.join(parent_dir, 'data', 'merged.txt')
-    with open(merged_file_path, 'w') as file:
-        file.write(encoded_merged_content)
-        print(f"Encoded merged content written to {merged_file_path}")
-
-    # Upload the merged content to the Gist 
+    # Upload the content to the Gist
     github_token = args.github_token
     gist_id = '712fc9f08cd794ca28352f7df2745cd5'
-    upload_to_gist(encoded_merged_content, gist_id, github_token)
+    filename = 'clash.yaml'  # Specify the desired filename
+    upload_to_gist(content, gist_id, github_token, filename)
 
 if __name__ == "__main__":
     main()
