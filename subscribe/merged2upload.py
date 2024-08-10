@@ -1,6 +1,7 @@
 import requests
 import base64
 import os
+import argparse
 
 def fetch_and_decode_base64(url):
     print(url)
@@ -34,6 +35,10 @@ def upload_to_gist(content, gist_id, github_token):
         print(f"Error updating Gist: {e}")
 
 def main():
+    parser = argparse.ArgumentParser(description='Process GitHub Token.')
+    parser.add_argument('github_token', type=str, help='Your GitHub Token')
+    args = parser.parse_args()
+
     current_dir = os.path.dirname(__file__)
     parent_dir = os.path.dirname(current_dir)
     file_path = os.path.join(parent_dir, 'data', 'subscribes.txt')
@@ -57,7 +62,7 @@ def main():
         print(f"Encoded merged content written to {merged_file_path}")
 
     # Upload the merged content to the Gist 
-    github_token = $Token
+    github_token = args.github_token
     gist_id = '712fc9f08cd794ca28352f7df2745cd5'
     upload_to_gist(encoded_merged_content, gist_id, github_token)
 
