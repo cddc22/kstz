@@ -38,7 +38,7 @@ jobs:
       - run:
           name: Run gist
           # This assumes pytest is installed via the install-package step above
-          command:  python -u subscribe/merged2upload.py $Token
+          command:  python -u subscribe/merged2upload.py ${Token}
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
