@@ -35,7 +35,7 @@ jobs:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
           command:  python -u subscribe/collect.py --all --overwrite --skip
-        - run:
+      - run:
           name: Run gist
           # This assumes pytest is installed via the install-package step above
           command:  python -u subscribe/merged2upload.py
