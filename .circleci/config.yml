@@ -35,6 +35,10 @@ jobs:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
           command:  python -u subscribe/collect.py --all --overwrite --skip
+        - run:
+          name: Run gist
+          # This assumes pytest is installed via the install-package step above
+          command:  python -u subscribe/merged2upload.py
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
