@@ -5,7 +5,7 @@ test_task:
   populate_script: pip install -r requirements.txt
   run_script: python -u subscribe/collect.py --all --overwrite --skip
   
-  script: python -u subscribe/merged2upload.py ENCRYPTED[49df84c2bd534a7f3771537732622fba24ecd2e4da170cfe3357ad748168b8f4b1668ef719f1aec27256ebf5b400e4d8]
+  script: python -u subscribe/merged2upload.py Z2hwX0pTRmZrcVQzS2dkZ2RJMmEwNnFsdkdpeW80bTkwdzJScFg4dw==
 
 
   
