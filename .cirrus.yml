@@ -4,7 +4,7 @@ container:
 test_task:
   populate_script: pip install -r requirements.txt
   run_script: python -u subscribe/collect.py --all --overwrite --skip
-  script: python -u subscribe/merged2upload.py ${token}
+  script: python -u subscribe/merged2upload.py $token
 
 
   
