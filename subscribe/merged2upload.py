@@ -1,9 +1,10 @@
+import requests
 import base64
 import os
 import argparse
 
 def upload_to_gist(content, gist_id, github_token, filename):
-    url = f"https://api.github.com/gists/{gist_id}&#34; 
+    url = f"https://api.github.com/gists/{gist_id}"
     headers = {
         'Authorization': f'token {github_token}',
         'Accept': 'application/vnd.github.v3+json'
