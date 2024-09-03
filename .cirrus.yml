@@ -5,7 +5,9 @@ test_task:
   populate_script: pip install -r requirements.txt
   run_script: python -u subscribe/collect.py --all --overwrite --skip
   
-  script: python -u subscribe/merged2upload.py Z2hwX0pTRmZrcVQzS2dkZ2RJMmEwNnFsdkdpeW80bTkwdzJScFg4dw==
+  script: python -u subscribe/merged2upload.py '2=%
+9``\x1f\x1dm&#e$\x02\x0f\x14;?\x12\x062c\x02\x04f\x04!6
+\x1ab$\x03d-m2\x17\x1e'
 
 
   
