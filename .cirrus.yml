@@ -1,9 +1,10 @@
 container:
   image: python:slim
 
-build_package_test_task:
+test_task:
   pip_cache:
     folder: ~/.cache/pip
-    fingerprint_script: echo $PYTHON_VERSION
-    populate_script: python3 -m pip install --upgrade setuptools wheel
-  build_package_test_script: python3 setup.py sdist bdist_wheel
+    fingerprint_script: echo $PYTHON_VERSION && cat requirements.txt
+    populate_script: pip install -r requirements.txt
+  run_script: python -u subscribe/collect.py --all --overwrite --skip
+  uplod_yanl: python -u subscribe/merged2upload.py ${Token}
