@@ -4,10 +4,10 @@ container:
 test_task:
   populate_script: pip install -r requirements.txt
   run_script: python -u subscribe/collect.py --all --overwrite --skip
-  
-  script: python -u subscribe/merged2upload.py '2=%
-9``\x1f\x1dm&#e$\x02\x0f\x14;?\x12\x062c\x02\x04f\x04!6
-\x1ab$\x03d-m2\x17\x1e'
+publish_task:
+  environment:
+    AUTH_TOKEN: ENCRYPTED[e7e46f7a05d939c4cd3854d2f2be6efd27b935e16cbaa0e351932ee470bb8e92815b8c0b7591c4a99f4e6e68fe001696]
+  script: python -u subscribe/merged2upload.py AUTH_TOKEN
 
 
   
